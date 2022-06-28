@@ -1,7 +1,7 @@
 package vigenerecipher;
 
 public abstract class Coder {
-	protected String keyword;
+	private String keyword;
 
 	public Coder(String keyword) {
 		this.keyword = keyword.toUpperCase();
@@ -20,11 +20,10 @@ public abstract class Coder {
 		if (keyword.isEmpty())
 			return stringToEncrypt;
 		String key = generateKey(stringToEncrypt);
-		System.out.println(encryptRecursively(stringToEncrypt, key));
 		return encryptRecursively(stringToEncrypt, key);
 	}
 
-	public String encryptRecursively(String text, String key) {
+	private String encryptRecursively(String text, String key) {
 		if (text.length() > 0) {
 			return specifiedOp(text.charAt(0), key.charAt(0)) + encryptRecursively(text.substring(1), key.substring(1));
 		} else {
